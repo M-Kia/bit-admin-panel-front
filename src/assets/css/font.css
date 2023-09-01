@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Segoe UI Regular"), url("../font/Segoe UI.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 600;
+  src: local("Segoe UI Semibold"), url("../font/seguisb.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Fabric MDL2";
+  src: url("../font/Segoe MDL2 Assets.TTF") format("ttf");
+}
+
+.font-segoe-ui {
+  font-family: "Segoe UI";
+}
+
+.font-fabric {
+  font-family: "Fabric MDL2";
+}

@@ -6,17 +6,34 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db": "json-server --watch ./src/data/db.json"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/base": "^5.0.0-beta.12",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.4",
     "@types/node": "20.4.9",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "classnames": "^2.3.2",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
+    "js-cookie": "^3.0.5",
+    "json-server": "^0.17.3",
     "next": "13.4.13",
     "react": "18.2.0",
+    "react-color": "^2.19.3",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.4",
+    "styled-components": "^5.3.11",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
+    "@types/react-color": "^3.0.6"
   }
 }
