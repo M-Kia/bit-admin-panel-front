@@ -34,6 +34,7 @@ export default function Input({
       "" + (new Date().getDate() + Math.floor(Math.random() * 100000000)),
     [inputId]
   );
+
   return (
     <FormControl
       component="div"
@@ -53,7 +54,7 @@ export default function Input({
           margin: "5px 0",
           color: "var(--color-grey-190)",
           transform: "translate(0, -8px)",
-          [`& .${inputLabelClasses.focused}`]: {
+          [`&.${inputLabelClasses.focused}`]: {
             color: "inherit",
           },
         }}

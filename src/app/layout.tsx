@@ -1,4 +1,4 @@
-import { JSX, PropsWithChildren } from "react";
+import { JSX, ReactNode } from "react";
 import type { Metadata } from "next";
 
 import ThemeRegistry from "@/theme/ThemeRegistry";
@@ -12,13 +12,24 @@ export const metadata: Metadata = {
   description: "A resume project",
 };
 
-type Props = PropsWithChildren;
+type Props = {
+  panel: ReactNode;
+  login: ReactNode;
+};
 
-export default function RootLayout({ children }: Props): JSX.Element {
+export default function RootLayout({ panel, login }: Props): JSX.Element {
+  const isAuthorized = false;
+
+  console.log({isAuthorized})
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry options={{ key: "mui" }}>{children}</ThemeRegistry>
+        <header
+          style={{ width: "100%", height: "20vh", backgroundColor: "black" }}
+        />
+        <ThemeRegistry options={{ key: "mui" }}>
+          {isAuthorized ? panel : login}
+        </ThemeRegistry>
       </body>
     </html>
   );

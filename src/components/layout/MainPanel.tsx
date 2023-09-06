@@ -9,7 +9,7 @@ export default function MainPanel({ children }: PropsWithChildren): JSX.Element 
       sx={{
         width: "100%",
         padding: {
-          sm: "70px 16px 50px",
+          sm: "60px 16px 50px",
           md: "80px 24px 50px",
           lg: "80px 47px 50px",
         },

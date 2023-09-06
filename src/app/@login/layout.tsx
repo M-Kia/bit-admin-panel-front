@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import LogoIcon from "@/components/kit/icon/Logo";
 
 import loginImage from "@/assets/images/login-image.png";
-import LoginImage from "@/components/kit/icon/LoginImage";
+import LoginImage from "@/components/user/LoginImage";
 
 type Props = PropsWithChildren;
 

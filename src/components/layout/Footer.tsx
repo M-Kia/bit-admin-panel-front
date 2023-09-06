@@ -24,9 +24,11 @@ export default function Footer({ drawerWidth }: Props): JSX.Element {
     <Stack
       direction="row"
       justifyContent="space-between"
+      alignItems="center"
       sx={{
-        padding: "12px 48px",
+        padding: { sm: 16, md: "12px 48px" },
         backgroundColor: "#ffffff",
+        height: 48,
         position: "fixed",
         bottom: 0,
         right: 0,
@@ -38,18 +40,30 @@ export default function Footer({ drawerWidth }: Props): JSX.Element {
           }),
       }}
     >
-      <Typography
-        variant="subtitle2"
-        component="a"
-        href={`mailto:${mail}`}
-        sx={{
-          textDecoration: "none",
-          color: "var(--color-custom-grey-150)",
-          fontSize: 12,
-        }}
-      >
-        {mail}
-      </Typography>
+      <Stack spacing={4}>
+        <Typography
+          variant="subtitle1"
+          sx={{
+            color: "var(--color-custom-grey-150)",
+            fontSize: 10,
+            display: { sm: "block", md: "none" },
+          }}
+        >
+          Made with <span style={{ color: "red" }}>❤</span> using bit platform!
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          component="a"
+          href={`mailto:${mail}`}
+          sx={{
+            textDecoration: "none",
+            color: "var(--color-custom-grey-150)",
+            fontSize: { sm: 10, md: 12 },
+          }}
+        >
+          {mail}
+        </Typography>
+      </Stack>
       <Stack direction="row" spacing={12}>
         {icons.map((Component) => (
           <IconButton
@@ -74,7 +88,11 @@ export default function Footer({ drawerWidth }: Props): JSX.Element {
       </Stack>
       <Typography
         variant="subtitle1"
-        sx={{ color: "var(--color-custom-grey-150)", fontSize: 10 }}
+        sx={{
+          color: "var(--color-custom-grey-150)",
+          fontSize: 10,
+          display: { sm: "none", md: "block" },
+        }}
       >
         Made with <span style={{ color: "red" }}>❤</span> using bit platform!
       </Typography>

@@ -8,12 +8,14 @@ export const openDrawerWidth = 206;
 export const closeDrawerWidth = 72;
 
 type Props = {
+  pagePath: string;
   largeScreen: boolean;
   open: boolean;
   closeDrawer: () => void;
 };
 
 export default function Drawer({
+  pagePath,
   largeScreen,
   open,
   closeDrawer,
@@ -50,33 +52,38 @@ export default function Drawer({
                 width: closeDrawerWidth,
               }),
           [`& .${drawerClasses.paper}`]: {
-            ...(largeScreen
-              ? open
-                ? {
-                    width: openDrawerWidth,
-                    transition: (theme) =>
-                      theme.transitions.create("width", {
-                        easing: theme.transitions.easing.sharp,
-                        duration: theme.transitions.duration.enteringScreen,
-                      }),
-                    overflowX: "hidden",
-                  }
-                : {
-                    transition: (theme) =>
-                      theme.transitions.create("width", {
-                        easing: theme.transitions.easing.sharp,
-                        duration: theme.transitions.duration.leavingScreen,
-                      }),
-                    overflowX: "hidden",
-                    width: closeDrawerWidth,
-                  }
-              : { width: openDrawerWidth }),
+            ...(!largeScreen
+              ? { width: openDrawerWidth }
+              : open
+              ? {
+                  width: openDrawerWidth,
+                  transition: (theme) =>
+                    theme.transitions.create("width", {
+                      easing: theme.transitions.easing.sharp,
+                      duration: theme.transitions.duration.enteringScreen,
+                    }),
+                  overflowX: "hidden",
+                }
+              : {
+                  transition: (theme) =>
+                    theme.transitions.create("width", {
+                      easing: theme.transitions.easing.sharp,
+                      duration: theme.transitions.duration.leavingScreen,
+                    }),
+                  overflowX: "hidden",
+                  width: closeDrawerWidth,
+                }),
             backgroundColor: "var(--color-custom-blue-1)",
             color: "var(--color-primary-light)",
           },
         }}
       >
-        <DrawerList open={open} closeDrawer={closeDrawer} />
+        <DrawerList
+          pagePath={pagePath}
+          largeScreen={largeScreen}
+          open={open}
+          closeDrawer={closeDrawer}
+        />
       </MuiDrawer>
     </>
   );
