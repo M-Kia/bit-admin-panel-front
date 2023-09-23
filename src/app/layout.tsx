@@ -1,7 +1,9 @@
-import { JSX, ReactNode } from "react";
+import { JSX, ReactNode, PropsWithChildren } from "react";
 import type { Metadata } from "next";
 
 import ThemeRegistry from "@/theme/ThemeRegistry";
+
+import HeaderWithDrawer from "@/components/layout/HeaderWithDrawer";
 
 import "@/assets/css/font.css";
 import "@/assets/css/color.css";
@@ -12,24 +14,21 @@ export const metadata: Metadata = {
   description: "A resume project",
 };
 
-type Props = {
-  panel: ReactNode;
-  login: ReactNode;
-};
-
-export default function RootLayout({ panel, login }: Props): JSX.Element {
+export default function RootLayout({
+  children,
+}: PropsWithChildren): JSX.Element {
   const isAuthorized = false;
 
-  console.log({isAuthorized})
+  let theChild = children;
+
+  if (isAuthorized) {
+    theChild = <HeaderWithDrawer>{children}</HeaderWithDrawer>;
+  }
+
   return (
     <html lang="en">
       <body>
-        <header
-          style={{ width: "100%", height: "20vh", backgroundColor: "black" }}
-        />
-        <ThemeRegistry options={{ key: "mui" }}>
-          {isAuthorized ? panel : login}
-        </ThemeRegistry>
+        <ThemeRegistry options={{ key: "mui" }}>{theChild}</ThemeRegistry>
       </body>
     </html>
   );

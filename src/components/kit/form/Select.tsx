@@ -1,34 +1,36 @@
 "use client";
 import { useState, useMemo, JSX } from "react";
 
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
+import MuiSelect, { selectClasses, SelectProps } from "@mui/material/Select";
 import OutlinedInput, {
   outlinedInputClasses,
 } from "@mui/material/OutlinedInput";
-import { InputBaseProps } from "@mui/material/InputBase";
 import InputLabel, { inputLabelClasses } from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
 
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { MenuItem } from "@mui/material";
 
-type Props = InputBaseProps & {
+type ItemType = { label: string | number; value: string | number };
+
+export type SelectItemType = ItemType[];
+
+type Props = SelectProps<string> & {
+  items: SelectItemType;
   label?: string;
-  errorMessage?: string;
 };
-export default function Input({
+
+export default function Select({
+  items,
   label,
   id: inputId,
   type,
-  endAdornment,
   error,
-  errorMessage,
+  "aria-errormessage": errorMessage,
+  placeholder,
+  sx,
   ...inputProps
 }: Props): JSX.Element {
-  const [showPassword, setShowPassword] = useState(false);
-
   const id = useMemo(
     () =>
       inputId ??
@@ -39,9 +41,8 @@ export default function Input({
   return (
     <FormControl
       component="div"
-      variant="standard"
+      fullWidth
       sx={{
-        width: "100%",
         paddingTop: 21,
       }}
     >
@@ -62,54 +63,13 @@ export default function Input({
       >
         {label}
       </InputLabel>
-      <OutlinedInput
+      <MuiSelect
         id={id}
-        type={type !== "password" ? type : showPassword ? "text" : "password"}
-        endAdornment={
-          type !== "password" ? (
-            endAdornment
-          ) : (
-            <InputAdornment
-              position="end"
-              sx={{
-                width: 32,
-                height: 32,
-              }}
-            >
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() => setShowPassword((prev) => !prev)}
-                onMouseDown={(event) => event.preventDefault()}
-                edge="end"
-              >
-                {showPassword ? (
-                  <VisibilityOff
-                    sx={{
-                      color: "var(--color-primary-main)",
-                      width: 16,
-                      height: 16,
-                    }}
-                  />
-                ) : (
-                  <Visibility
-                    sx={{
-                      color: "var(--color-primary-main)",
-                      width: 16,
-                      height: 16,
-                    }}
-                  />
-                )}
-              </IconButton>
-            </InputAdornment>
-          )
-        }
         sx={{
           borderRadius: 2,
           position: "relative",
           height: 32,
           fontSize: 14,
-          paddingRight:
-            type === "password" || endAdornment !== undefined ? 8 : 0,
           transition: "border-color 0.4s ease-in-out",
           fontFamily: "Segoe UI",
           color: "var(--color-custom-grey-190)",
@@ -129,13 +89,24 @@ export default function Input({
           [`& .${outlinedInputClasses.focused}`]: {
             border: "2px solid var(--color-primary-main)",
           },
-          ...inputProps.sx,
+          ...sx,
         }}
-        error={error}
-        aria-invalid={error ?? inputProps["aria-invalid"]}
-        aria-errormessage={errorMessage ?? inputProps["aria-errormessage"]}
+        displayEmpty
+        renderValue={(selected = "") => {
+          if (selected === "") {
+            return placeholder ?? "";
+          }
+
+          return selected;
+        }}
         {...inputProps}
-      />
+      >
+        {items.map((item, index) => (
+          <MenuItem key={`${id}-item-${index}`} value={item.value}>
+            {item.label}
+          </MenuItem>
+        ))}
+      </MuiSelect>
       <Box
         sx={{
           height: 16,
@@ -143,8 +114,6 @@ export default function Input({
           fontSize: 12,
           marginTop: 4,
         }}
-        component="p"
-        role="alert"
       >
         {error && errorMessage}
       </Box>

@@ -17,17 +17,23 @@ export default function LoadingScreen(): JSX.Element {
         width: "100%",
         height: "100%",
         margin: 0,
-        "& svg": {
+      }}
+    >
+      <LogoIcon
+        sx={{
+          width: {
+            sm: 60,
+            md: 126,
+            lg: 240,
+          },
           height: {
             sm: 40,
             md: 84,
             lg: 160,
           },
           "& path": { fill: "var(--color-primary-light)" },
-        },
-      }}
-    >
-      <LogoIcon />
+        }}
+      />
       <Typography
         sx={{
           color: "var(--color-custom-grey-60)",

@@ -17,7 +17,7 @@ import Paper from "@mui/material/Paper";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
+import TableRow, {tableRowClasses} from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TablePagination from "@mui/material/TablePagination";
 import IconButton from "@mui/material/IconButton";
@@ -30,10 +30,7 @@ import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 
 import { CategoryType, TableOrder } from "./type";
 
-import {
-  getComparator,
-  deleteDialogReducer,
-} from "./utils";
+import { getComparator, deleteDialogReducer } from "./utils";
 
 const rowsPerPage = 10;
 
@@ -68,11 +65,6 @@ export default function CategoryTable({ categories }: Props): JSX.Element {
     setPage(newPage);
   };
 
-  const deleteCategory = () => {
-    console.log("deleted!");
-    deleteDialogDispatcher({ type: "close" });
-  };
-
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - categories.length) : 0;
 
@@ -82,7 +74,7 @@ export default function CategoryTable({ categories }: Props): JSX.Element {
         .slice()
         .sort(getComparator(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-    [categories, order, orderBy, page, rowsPerPage]
+    [categories, order, orderBy, page]
   );
 
   return (
@@ -113,6 +105,10 @@ export default function CategoryTable({ categories }: Props): JSX.Element {
                     tabIndex={-1}
                     key={row.name}
                     sx={{
+                      backgroundColor: "#ffffff",
+                      [`&.${tableRowClasses.hover}:hover`]: {
+                        backgroundColor: "hsl(0deg 0% 92.16%)",
+                      },
                       "&:not(:last-child)": {
                         borderBottomColor: "var(--color-custom-grey-30)",
                       },
@@ -130,7 +126,6 @@ export default function CategoryTable({ categories }: Props): JSX.Element {
                         },
                         position: "sticky",
                         left: 0,
-                        backgroundColor: "#ffffff",
                       }}
                     >
                       {row.name}
@@ -139,10 +134,7 @@ export default function CategoryTable({ categories }: Props): JSX.Element {
                       align="left"
                       sx={{
                         padding: "13px 12px",
-                        width: {
-                          md: "10%",
-                          lg: "10%",
-                        },
+                        width: "10%",
                       }}
                     >
                       {row.id}
@@ -151,10 +143,7 @@ export default function CategoryTable({ categories }: Props): JSX.Element {
                       align="left"
                       sx={{
                         padding: "9px 12px",
-                        width: {
-                          md: "10%",
-                          lg: "10%",
-                        },
+                        width: "10%",
                       }}
                     >
                       <ColorBox color={row.color} />
@@ -216,7 +205,6 @@ export default function CategoryTable({ categories }: Props): JSX.Element {
         name={deleteDialogState.name}
         open={deleteDialogState.open}
         close={() => deleteDialogDispatcher({ type: "close" })}
-        confirmAction={deleteCategory}
       />
     </Stack>
   );

@@ -15,7 +15,7 @@ type Props = {
   close: () => void;
 };
 
-export default function DeleteCategory({
+export default function DeleteProduct({
   open,
   name,
   close,
@@ -57,9 +57,9 @@ export default function DeleteCategory({
           color: "var(--color-custom-grey-190)",
         }}
       >
-        Delete Category
+        Delete product
       </DialogTitle>
-      <DialogContent sx={{ paddingBottom: { sm: 64, md: 0 } }}>
+      <DialogContent sx={{ paddingBottom: {sm: 64, md: 0} }}>
         <DialogContentText
           id="alert-dialog-description"
           sx={{

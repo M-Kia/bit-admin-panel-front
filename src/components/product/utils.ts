@@ -1,4 +1,10 @@
-import { TableOrder, DeleteDialogAction, DeleteDialogState } from "./type";
+import {
+  TableOrder,
+  DeleteDialogAction,
+  DeleteDialogState,
+  EditDialogState,
+  EditDialogAction,
+} from "./type";
 
 /**
  *
@@ -47,6 +53,25 @@ export function deleteDialogReducer(
       return {
         ...prevState,
         ...action.payload,
+        open: true,
+      };
+    case "close":
+      return {
+        ...prevState,
+        open: false,
+      };
+  }
+}
+
+export function editDialogReducer(
+  prevState: EditDialogState,
+  action: EditDialogAction
+): EditDialogState {
+  switch (action.type) {
+    case "open":
+      return {
+        ...prevState,
+        data: action.payload,
         open: true,
       };
     case "close":

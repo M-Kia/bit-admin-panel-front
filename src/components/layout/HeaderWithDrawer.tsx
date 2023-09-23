@@ -7,7 +7,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import useTheme from "@mui/material/styles/useTheme";
 
 import Drawer from "./header/Drawer";
-import MainPanel from "./MainPanel";
 import Footer from "./Footer";
 import AppBar from "./header/AppBar";
 
@@ -41,7 +40,7 @@ export default function HeaderWithDrawer({ children }: Props): JSX.Element {
         open={open}
         closeDrawer={() => setOpen(false)}
       />
-      <MainPanel>{children}</MainPanel>
+      {children}
       <Footer
         drawerWidth={!largeScreen ? 0 : open ? maxDrawerWidth : minDrawerWidth}
       />

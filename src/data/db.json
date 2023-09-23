@@ -1,8 +1,11 @@
 {
-  "category": [
-  ],
-  "product": [
-  ],
+  "category": [],
+  "product": [],
   "user": [
+    {
+      "email": "kia@gmail.com",
+      "password": "781e5e245d69b566979b86e28d23f2c7",
+      "id": 1
+    }
   ]
 }

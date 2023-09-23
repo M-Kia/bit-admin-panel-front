@@ -1,6 +1,5 @@
 import { JSX, PropsWithChildren } from "react";
 import { headers } from "next/headers";
-import Image from "next/image";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -8,7 +7,6 @@ import Typography from "@mui/material/Typography";
 
 import LogoIcon from "@/components/kit/icon/Logo";
 
-import loginImage from "@/assets/images/login-image.png";
 import LoginImage from "@/components/user/LoginImage";
 
 type Props = PropsWithChildren;
@@ -16,10 +14,6 @@ type Props = PropsWithChildren;
 export default async function LoginLayout({
   children,
 }: Props): Promise<JSX.Element> {
-  const url = headers().get("x-url")?.valueOf() ?? "";
-
-  const pageUrl = url.split("/").pop()?.split("?").shift()?.toLowerCase();
-  
   return (
     <Box
       component="main"
@@ -31,7 +25,10 @@ export default async function LoginLayout({
         flexDirection: { md: "column", lg: "row" },
         width: "100%",
         height: "100%",
-        ".logo": {
+      }}
+    >
+      <LogoIcon
+        sx={{
           width: { sm: 30, md: 40 },
           height: { sm: 20, md: 26 },
           position: "fixed",
@@ -43,10 +40,8 @@ export default async function LoginLayout({
               md: "var(--color-primary-light)",
             },
           },
-        },
-      }}
-    >
-      <LogoIcon className="logo" />
+        }}
+      />
       <Stack
         display={{ sm: "none", md: "flex" }}
         justifyContent="space-between"
@@ -99,42 +94,20 @@ export default async function LoginLayout({
           sx={{
             position: "relative",
             minWidth: 288,
-            "& svg": {
+          }}
+        >
+          <LoginImage
+            sx={{
               width: "100%",
               height: {
                 sm: 180,
                 lg: 384,
               },
-            },
-          }}
-        >
-          <LoginImage />
+            }}
+          />
         </Box>
       </Stack>
-      <Box sx={{ padding: 16, width: "100%" }}>
-        <Typography
-          variant="h1"
-          textAlign="center"
-          sx={{
-            marginTop: {
-              sm: 64,
-              md: 140,
-              lg: 136
-            },
-            marginX: "auto",
-            marginBottom: 56,
-            fontWeight: 600,
-            fontSize: {
-              sm: 28,
-              md: 32,
-              lg: 42,
-            },
-          }}
-        >
-          {pageUrl === "sign-up" ? "Sign up" : "Sign in"}
-        </Typography>
-        {children}
-      </Box>
+      <Box sx={{ padding: 16, width: "100%" }}>{children}</Box>
     </Box>
   );
 }

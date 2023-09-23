@@ -2,7 +2,10 @@ import { JSX } from "react";
 
 import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
 
-export default function LoginImage(props: SvgIconProps): JSX.Element {
+export default function LoginImage({
+  sx,
+  ...props
+}: SvgIconProps): JSX.Element {
   return (
     <SvgIcon
       width={558}
@@ -10,6 +13,10 @@ export default function LoginImage(props: SvgIconProps): JSX.Element {
       viewBox="0 0 558 349"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      sx={{
+        color: "transparent",
+        ...sx,
+      }}
       {...props}
     >
       <path

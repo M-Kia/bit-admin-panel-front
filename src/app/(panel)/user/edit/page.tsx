@@ -3,10 +3,10 @@ import { JSX } from "react";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import EditProfileForm from "@/components/user/EditProfileForm";
 import Link from "@/components/kit/navbar/Link";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import EditProfileForm from "@/components/user/EditProfileForm";
 
 export default function EditProfile(): JSX.Element {
   return (
