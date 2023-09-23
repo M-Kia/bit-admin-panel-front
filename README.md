@@ -8,26 +8,14 @@ This is a [Next.js](https://nextjs.org/) project with admin panel UI from [Figma
 
 ## Bootstrap Project
 
-First you should clone the back-end of this project ([express.js](https://github.com/M-Kia/bit-panel-back-express.git)). Then, clone this project:
+First, you should clone the back-end of this project ([express.js](https://github.com/M-Kia/bit-panel-back-express.git)). Then, clone this project:
 
 ```bash
 git clone "https://github.com/M-Kia/bit-panel-front.git"
 ```
 
-Now you can run the development server for this project:
+Then, after going to the created directory, run `npm install` to install dependencies.
 
-```bash
-npm run dev
-```
+Now you can run the development server for this project with `npm run dev`. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-Also you can run the following commands to run the production version of project:
-
-```bash
-npm run build
-```
-
-```bash
-npm run start
-```
+Also you can build the production version of this project by running `npm run build` and `npm run start` on your server.
