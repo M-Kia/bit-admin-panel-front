@@ -18,4 +18,4 @@ Then, after going to the created directory, run `npm install` to install depende
 
 Now you can run the development server for this project with `npm run dev`. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Also you can build the production version of this project by running `npm run build` and `npm run start` on your server.
+Also you can build the production version of this project by running `npm run build` and `npm start` on your server.
